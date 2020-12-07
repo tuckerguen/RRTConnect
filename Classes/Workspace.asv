@@ -1,0 +1,22 @@
+classdef Workspace
+    %WORKSPACE Robot workspace with
+    % 3 arm robot centered at origin
+    % and list of obstacles
+    
+    properties
+        obstacles(:,1)
+    end
+    
+    methods
+        function obj = Workspace(obstacles)
+            %WORKSPACE Construct an instance of this class
+            obj.obstacles = obstacles;
+        end
+        
+        function ws_fig = draw()
+            centers = [
+            viscircles(o1.center, o1.radius);
+        end
+    end
+end
+
