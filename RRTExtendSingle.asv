@@ -1,0 +1,3 @@
+function [result, Ta, q_target] = RRTExtendSingle(Ta, q_rand, step_len)
+    q_target = Node(Config(0,0,0), []);
+    q_near = Ta.nearest(q_rand, NullCo);

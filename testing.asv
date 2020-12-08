@@ -17,8 +17,8 @@ hold on;
 c0.draw();
 c1.draw();
 
-for i=1:norm(config_diff(c0, c1).th)*10
-    q_int = limit_dist(c0, c1, i/10);
+for i=1:norm(config_diff(c0, c1).th)
+    q_int = limit_dist(c0, c1, i)
     q_int.draw();
 end
 % local_planner(c0, c1, ws, 0.1)

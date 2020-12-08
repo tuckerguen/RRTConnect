@@ -1,4 +1,4 @@
-function is_collision = check_collision(c, ws)
+function is_collision = check_config_collision(c, ws)
     is_collision = false;
     % Get points defining arm
     [xs, ys] = c.getPoints();
