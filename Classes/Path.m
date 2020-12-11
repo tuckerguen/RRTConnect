@@ -13,6 +13,7 @@ classdef Path < handle
         end
         
         function insert(obj, config)
+            % insert a config into the path
             if isempty(obj.configs)
                 obj.configs = [config];
             else
@@ -21,12 +22,14 @@ classdef Path < handle
         end
         
         function draw(obj, color)
+            % Draw all the configs in the path
             for i=1:length(obj.configs)-1
                 obj.configs(i).draw(color);
             end
         end
         
         function animate(obj, ws, color)
+            % Animate the path
             for i=1:length(obj.configs)-1
                 obj.configs(i).draw(color);
                 local_planner(obj.configs(i), obj.configs(i+1), ws, 0.02, color);

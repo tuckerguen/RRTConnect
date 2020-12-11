@@ -13,14 +13,17 @@ classdef KdTree
         end
         
         function obj = insert(obj, config)
+            % Insert a config into the tree
             obj.root.insert(KdNode(config, NullKdNode(), NullKdNode()));
         end
         
         function near = nearest(obj, search_node)
+            % Search for nearest node in tree to search_node
             near = obj.root.nearest(search_node, Config([0,0,0]), realmax, Path());
         end
         
         function draw(obj, color)
+            % Draw the tree
             obj.root.draw(color);
         end
     end
