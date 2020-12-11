@@ -1,0 +1,12 @@
+D = '../';
+S = dir(fullfile(D,'*'));
+N = setdiff({S([S.isdir]).name},{'.','..'}); % list of subfolders of D.
+for ii = 1:numel(N)
+    T = dir(fullfile(D,N{ii},'*.m')); % improve by specifying the file extension.
+    C = {T(~[T.isdir]).name}; % files in subfolder.
+    for jj = 1:numel(C)
+        F = fullfile(D,N{ii},C{jj});
+        publish F latex
+        
+    end
+end
