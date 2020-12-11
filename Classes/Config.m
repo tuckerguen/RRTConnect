@@ -24,10 +24,10 @@ classdef Config
             ys = [0, y1, y2, y3];
         end
         
-        function draw(obj)
+        function p = draw(obj, color)
             % Plot three arm sections
             [xs, ys] = obj.getPoints();
-            plot(xs, ys);
+            p = plot(xs, ys, 'color', color);
         end
         
 

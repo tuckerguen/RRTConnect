@@ -14,5 +14,5 @@ cf = Config(0, 0.9273, -0.9273);
 
 
 
-ws.draw()
+ws.draw();
 hold on;

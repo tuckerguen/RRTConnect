@@ -39,7 +39,10 @@ classdef KdNode < handle
                 % If no right node
                 if isa(obj.right, 'NullKdNode')
                     % Increment split criterion
-                    node.split = mod(obj.split+1, 3);
+                    node.split = mod(obj.split+1, 4);
+                    if node.split == 0
+                        node.split = node.split + 1;
+                    end
                     obj.right = node;
                 else
                     obj.right.insert(node);
@@ -47,7 +50,8 @@ classdef KdNode < handle
             end
         end
         
-        function near = nearest(obj, config, curr_near, curr_dist)
+        function near = nearest(obj, config, curr_near, curr_dist, path)
+            path.insert(obj.config);
             % If same as this node, return this node config
             if isequal(config.th, obj.config.th)
                 near = obj.config;
@@ -68,16 +72,27 @@ classdef KdNode < handle
                     if config.th(obj.split) <= obj.cval(obj.split)
                         % If left node, recurse, otherwise do nothing
                         if isa(obj.left, 'KdNode')
-                            near = obj.left.nearest(config, curr_near, curr_dist);
+                            near = obj.left.nearest(config, curr_near, curr_dist, path);
                         end
                     % Go right
                     else 
                         % If right node, recurse, otherwise do nothing
                         if isa(obj.right, 'KdNode')
-                            near = obj.right.nearest(config, curr_near, curr_dist);
+                            near = obj.right.nearest(config, curr_near, curr_dist, path);
                         end
                     end
                 end
+            end
+        end
+        
+        function draw(obj, color)
+            % Draw this node's config
+            obj.config.draw(color);
+            if isa(obj.left, 'KdNode')
+                obj.left.draw(color);
+            end
+            if isa(obj.right, 'KdNode')
+                obj.right.draw(color);
             end
         end
     end
